@@ -35,7 +35,7 @@ bool runNewJsonCmd = false;
 // 1: WAVE ROVER
 // 2: UGV02(UGV)
 // 3: UGV01(UGV)
-byte mainType = 1;
+byte mainType = 2;
 
 // 0: [Base default] without RoArm-M2 and gimbal.
 // 1: [RoArm default] RoArm-M2 mounted on the UGV.
