@@ -35,35 +35,7 @@ void updateIMUData() {
 
 
 void imuCalibration() {
-	// jsonInfoHttp.clear();
-	// switch (inputStep) {
-	// case 0:
-	// 	if (InfoPrint == 1){
-	// 		jsonInfoHttp["info"] = "keep 10dof-imu device horizontal and then calibrate next step.";
-	// 	}
-	// 	break;
-	// case 1:
-	// 	calibrateStepA();
-	// 	if (InfoPrint == 1){
-	// 		jsonInfoHttp["info"] = "rotate z axis 180 degrees and then calibrate next step.";
-	// 	}
-	// 	break;
-	// case 2:
-	// 	calibrateStepB();
-	// 	if (InfoPrint == 1){
-	// 		jsonInfoHttp["info"] = "flip 10dof-imu device and keep it horizontal and then calibrate next step.";
-	// 	}
-	// 	break;
-	// case 3:
-	// 	calibrateStepC();
-	// 	if (InfoPrint == 1){
-	// 		jsonInfoHttp["info"] = "calibration done.";
-	// 	}
-	// 	break;
-	// }
-	// String getInfoJsonString;
-	// serializeJson(jsonInfoHttp, getInfoJsonString);
-	// Serial.println(getInfoJsonString);
+
 }
 
 
@@ -95,19 +67,9 @@ void getIMUData() {
 }
 
 void getIMUOffset() {
-	// getIMUOffsetData(&offsetData);
-	// jsonInfoHttp.clear();
-	// jsonInfoHttp["T"] = 101;
 
-	// jsonInfoHttp["x"] = offsetData.X;
-	// jsonInfoHttp["y"] = offsetData.Y;
-	// jsonInfoHttp["z"] = offsetData.Z;
-
-	// String getInfoJsonString;
-	// serializeJson(jsonInfoHttp, getInfoJsonString);
-	// Serial.println(getInfoJsonString);
 }
 
 void setIMUOffset(int16_t inputX, int16_t inputY, int16_t inputZ) {
-	// setOffset(inputX, inputY, inputZ);
+
 }

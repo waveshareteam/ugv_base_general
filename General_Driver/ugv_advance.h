@@ -388,7 +388,8 @@ void baseInfoFeedback() {
 
 	jsonInfoHttp["r"] = icm_roll;
 	jsonInfoHttp["p"] = icm_pitch;
-	jsonInfoHttp["y"] = icm_yaw;
+	// jsonInfoHttp["y"] = icm_yaw;
+	jsonInfoHttp["y"] = "null";
 
 	// jsonInfoHttp["q0"] = qw;
 	// jsonInfoHttp["q1"] = qx;

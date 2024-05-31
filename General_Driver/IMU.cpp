@@ -28,10 +28,7 @@ float angles[3];
 float q0, q1, q2, q3; 
 
 void imuInit()
-{
-    // Wire.begin(S_SDA, S_SCL);
-    // Serial.begin(115200);
-   
+{ 
     if (qmi8658_.begin() == 0)
 	      Serial.println("qmi8658_init fail");
 
@@ -53,10 +50,6 @@ void imuInit()
           break;
         }
     }
-    // Serial.println("Start figure-8 calibration after 1 seconds.");
-    // delay(1000);
-    // calibrate(10000, &offset_x, &offset_y, &offset_z);
-    // calibrateMagn();
     q0 = 1.0f;  
     q1 = 0.0f;
     q2 = 0.0f;
@@ -72,25 +65,14 @@ void imuDataGet(EulerAngles *pstAngles,
   float  acc[3], gyro[3];
   float MotionVal[9];
 
-  magnetometer_.getData(&x, &y, &z);
+  // magnetometer_.getData(&x, &y, &z);
 
   pstMagnRawData->s16X = x- offset_x;
   pstMagnRawData->s16Y = y- offset_y;
   pstMagnRawData->s16Z = z- offset_z;
 
-  // qmi8658_.GetEulerAngles(&pstAngles->pitch,&pstAngles->roll,&pstAngles->yaw,acc,gyro);
   qmi8658_.read_sensor_data(acc,gyro);
 
-  // pstAngles->roll = atan2((float)acc[1], (float)acc[2]);
-  // pstAngles->pitch = atan2(-(float)acc[0], sqrt((float)(acc[1] * acc[1]) + (float)(acc[2] * acc[2])));
-
-  // double Xheading = pstMagnRawData->s16X * cos(pstAngles->pitch) + pstMagnRawData->s16Y * sin(pstAngles->roll) * sin(pstAngles->pitch) + pstMagnRawData->s16Z * cos(pstAngles->roll) * sin(pstAngles->pitch);
-  // double Yheading = pstMagnRawData->s16Y * cos(pstAngles->roll) - pstMagnRawData->s16Z * sin(pstAngles->pitch);
-  
-  // pstAngles->yaw = /*180 + */57.3 * atan2(Yheading, Xheading) + declination_shenzhen;
-
-  // pstAngles->roll = atan2((float)acc[1], (float)acc[2]) * 57.3;
-  // pstAngles->pitch = atan2(-(float)acc[0], sqrt((float)(acc[1] * acc[1]) + (float)(acc[2] * acc[2]))) * 57.3;
   MotionVal[0]=gyro[0];
   MotionVal[1]=gyro[1];
   MotionVal[2]=gyro[2];
@@ -104,8 +86,6 @@ void imuDataGet(EulerAngles *pstAngles,
   imuAHRSupdate((float)MotionVal[0] * 0.0175, (float)MotionVal[1] * 0.0175, (float)MotionVal[2] * 0.0175,
                 (float)MotionVal[3], (float)MotionVal[4], (float)MotionVal[5], 
                 (float)MotionVal[6], (float)MotionVal[7], MotionVal[8]);
-
-
 
   pstAngles->pitch = asin(-2 * q1 * q3 + 2 * q0* q2)* 57.3; // pitch
   pstAngles->roll = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* 57.3; // roll
