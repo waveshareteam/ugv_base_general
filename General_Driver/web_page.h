@@ -359,8 +359,8 @@ const char index_html[] PROGMEM = R"rawliteral(
                         <br>
                         <div>
                             <div id="device-speed-btn">
-                                <label><button name="speedbtn" class="small-btn" onclick="changeSpeed(0.3);">SLOW</button></label>
-                                <label><button name="speedbtn" class="small-btn" onclick="changeSpeed(0.6);">MIDDLE</button></label>
+                                <label><button name="speedbtn" class="small-btn" onclick="changeSpeed(0.5);">SLOW</button></label>
+                                <label><button name="speedbtn" class="small-btn" onclick="changeSpeed(0.8);">MIDDLE</button></label>
                                 <label><button name="speedbtn" class="small-btn" onclick="changeSpeed(1.0);">FAST</button></label>
                             </div>
                         </div>
