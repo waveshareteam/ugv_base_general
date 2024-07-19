@@ -31,6 +31,8 @@ void updateIMUData() {
 	icm_roll = stAngles.roll;
 	icm_pitch = stAngles.pitch;
 	icm_yaw = stAngles.yaw;
+
+  temp = temperatureRead();
 }
 
 

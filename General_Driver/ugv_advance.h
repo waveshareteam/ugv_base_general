@@ -388,15 +388,15 @@ void baseInfoFeedback() {
 
 	jsonInfoHttp["r"] = icm_roll;
 	jsonInfoHttp["p"] = icm_pitch;
-	// jsonInfoHttp["y"] = icm_yaw;
-	jsonInfoHttp["y"] = "null";
+	jsonInfoHttp["y"] = icm_yaw;
+	// jsonInfoHttp["y"] = "null";
 
 	// jsonInfoHttp["q0"] = qw;
 	// jsonInfoHttp["q1"] = qx;
 	// jsonInfoHttp["q2"] = qy;
 	// jsonInfoHttp["q3"] = qz;
 
-	// jsonInfoHttp["temp"] = temp.temperature;
+	jsonInfoHttp["temp"] = temp;
 
 	jsonInfoHttp["v"] = loadVoltage_V;
 

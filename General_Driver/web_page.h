@@ -278,8 +278,8 @@ const char index_html[] PROGMEM = R"rawliteral(
                                 <span id="pn">PITCH</span>
                             </div>
                             <div>
-                                <span class="num-color mid-num" id="y">-1.01</span>
-                                <span id="yn">YAW</span>
+                                <span class="num-color mid-num" id="temp">-1.01</span>
+                                <span id="yn">TEMP</span>
                             </div>
                             <div>
                                 <span class="num-color mid-num" id="mX">-1.01</span>
@@ -706,7 +706,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 
                 document.getElementById("r").innerHTML = jsonResponse.r?.toFixed(2);
                 document.getElementById("p").innerHTML = jsonResponse.p?.toFixed(2);
-                document.getElementById("y").innerHTML = jsonResponse.y?.toFixed(2);
+                document.getElementById("temp").innerHTML = jsonResponse.temp?.toFixed(2);
                 document.getElementById("mZ").innerHTML = speed_rate;
 
                 if (jsonResponse.hasOwnProperty('pan')) {

@@ -65,7 +65,7 @@ void imuDataGet(EulerAngles *pstAngles,
   float  acc[3], gyro[3];
   float MotionVal[9];
 
-  // magnetometer_.getData(&x, &y, &z);
+  magnetometer_.getData(&x, &y, &z);
 
   pstMagnRawData->s16X = x- offset_x;
   pstMagnRawData->s16Y = y- offset_y;
