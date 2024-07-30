@@ -15,7 +15,7 @@ void webCtrlServer(){
     deserializeJson(jsonCmdReceive, jsonCmdWebString);
     jsonCmdReceiveHandler();
     serializeJson(jsonInfoHttp, jsonFeedbackWeb);
-    server.send(200, "text/plane", jsonFeedbackWeb);
+    server.send(200, "text/json", jsonFeedbackWeb);
     jsonFeedbackWeb = "";
     jsonInfoHttp.clear();
     jsonCmdReceive.clear();
