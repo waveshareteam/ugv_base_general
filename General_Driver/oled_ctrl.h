@@ -65,7 +65,7 @@ void oledInfoUpdate() {
   // inaDataUpdate();
   screenLine_3 = "V:"+String(loadVoltage_V);
   oled_update();
-  
+
 }
 
 // oled ctrl.

@@ -245,7 +245,7 @@
 
 // dynamic external force adaptation.
 // mode: 0 - stop: reset every limit torque to 1000.
-//       1 - start: set the joint limit torque. 
+//       1 - start: set the joint limit torque.
 // b, s, e, h = bassJoint, shoulderJoint, elbowJoint, handJoint
 // example:
 // starts. input the limit torque of every joint.
@@ -348,7 +348,7 @@
 
 // === === === mission & steps edit. === === ===
 
-// create a mission in flash: 
+// create a mission in flash:
 // {"T":220,"name":"mission_a","intro":"test mission created in flash."}
 #define CMD_CREATE_MISSION 220
 
@@ -524,11 +524,11 @@
 #define CMD_SET_SERVO_ID 501
 
 // set the current position as the middle position.
-// > BASE_SERVO_ID    11
-// > SHOULDER_DRIVING_SERVO_ID 12
-// > SHOULDER_DRIVEN_SERVO_ID  13
-// > ELBOW_SERVO_ID   14
-// > GRIPPER_SERVO_ID 15
+// > BASE_SERVO_ID              11
+// > SHOULDER_DRIVING_SERVO_ID  12
+// > SHOULDER_DRIVEN_SERVO_ID   13
+// > ELBOW_SERVO_ID             14
+// > GRIPPER_SERVO_ID           15
 // {"T":502,"id":11}
 #define CMD_SET_MIDDLE   502
 

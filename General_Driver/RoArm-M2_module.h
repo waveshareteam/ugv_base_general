@@ -146,14 +146,14 @@ void setMiddlePos(byte InputID){
 // to release all servos' torque for 10s.
 void emergencyStopProcessing() {
   st.EnableTorque(254, 0);
-  
+
 }
 
 
 // position check.
 // it will wait for the servo to move to the goal position.
 void waitMove2Goal(byte InputID, s16 goalPosition, s16 offSet){
-  while(servoFeedback[InputID - 11].pos < goalPosition - offSet || 
+  while(servoFeedback[InputID - 11].pos < goalPosition - offSet ||
         servoFeedback[InputID - 11].pos > goalPosition + offSet){
     if (!servoFeedback[InputID - 11].status) {
       servoTorqueCtrl(254, 0);
@@ -199,7 +199,7 @@ void RoArmM2_initCheck(bool returnType) {
 bool setServosPID(byte InputID, byte InputP) {
   if(!getFeedback(InputID, true)){return false;}
   st.unLockEprom(InputID);
-  st.writeByte(InputID, ST_PID_P_ADDR, InputP); 
+  st.writeByte(InputID, ST_PID_P_ADDR, InputP);
   st.LockEprom(InputID);
   return true;
 }
@@ -289,7 +289,7 @@ int RoArmM2_shoulderJointCtrlRad(byte returnType, double radInput, u16 speedInpu
   s16 computePos = calculatePosByRad(radInput);
   goalPos[1] = ARM_SERVO_MIDDLE_POS + computePos;
   goalPos[2] = ARM_SERVO_MIDDLE_POS - computePos;
-  
+
   if(returnType == 1){
     st.WritePosEx(SHOULDER_DRIVING_SERVO_ID, goalPos[1], speedInput, accInput);
     st.WritePosEx(SHOULDER_DRIVEN_SERVO_ID, goalPos[2], speedInput, accInput);
@@ -327,7 +327,7 @@ int RoArmM2_elbowJointCtrlRad(byte returnType, double radInput, u16 speedInput, 
 //               servo will NOT move.
 //            1: returns the hand joint servo position and save it to goalPos[4],
 //               servo moves.
-// ctrl type 0: status ctrl. - cmd 0: release 
+// ctrl type 0: status ctrl. - cmd 0: release
 //                                 1: grab
 //           1: position ctrl. - cmd: input angle in radius.
 int RoArmM2_handJointCtrlRad(byte returnType, double radInput, u16 speedInput, u8 accInput) {
@@ -379,7 +379,7 @@ void RoArmM2_handTorqueCtrl(int inputTorque) {
 
 // dynamic external force adaptation.
 // mode: 0 - stop: reset every limit torque to 1000.
-//       1 - start: set the joint limit torque. 
+//       1 - start: set the joint limit torque.
 // b, s, e, h = bassJoint, shoulderJoint, elbowJoint, handJoint
 // example:
 // starts. input the limit torque of every joint.
@@ -402,12 +402,12 @@ void RoArmM2_dynamicAdaptation(byte inputM, int inputB, int inputS, int inputE, 
 
 
 // this function uses relative radInput to set a new X+ axis.
-// dirInput: 
+// dirInput:
 //              0
 //              X+
 //        -90 - ^ - 90
 //              |
-//          -180 180 
+//          -180 180
 void setNewAxisX(double angleInput) {
   double radInput = (angleInput / 180) * M_PI;
   RoArmM2_shoulderJointCtrlRad(1, 0, 500, 20);
@@ -485,12 +485,12 @@ void simpleLinkageIkRad(double LA, double LB, double aIn, double bIn) {
 // '''
 
 // AI prompt:
-// I need a C language function. In a 2D Cartesian coordinate system, 
+// I need a C language function. In a 2D Cartesian coordinate system,
 // input a coordinate point (x, y). The function should return two values:
 
 // The distance from this coordinate point to the origin of the coordinate system.
-// The angle, in radians, between the line connecting this point and the origin 
-// of the coordinate system and the positive direction of the x-axis. 
+// The angle, in radians, between the line connecting this point and the origin
+// of the coordinate system and the positive direction of the x-axis.
 // The angle should be in the range (-π, π).
 void cartesian_to_polar(double x, double y, double* r, double* theta) {
     *r = sqrt(x * x + y * y);
@@ -530,7 +530,7 @@ void RoArmM2_computePosbyJointRad(double base_joint_rad, double shoulder_joint_r
 
     r_ee = aOut + cOut;
     z_ee = bOut + dOut;
-    
+
     polarToCartesian(r_ee, base_joint_rad, eOut, fOut);
     x_ee = eOut;
     y_ee = fOut;
@@ -612,7 +612,7 @@ void RoArmM2_infoFeedback() {
 // AI prompt:
 // In a 2D Cartesian coordinate system, there is a point A.
 // Input the X and Y coordinates of point A and an angle parameter theta (in radians).
-// Point A rotates counterclockwise around the origin of the Cartesian coordinate 
+// Point A rotates counterclockwise around the origin of the Cartesian coordinate
 // system by an angle of theta to become point B. Return the XY coordinates of point B.
 // I need a C language function.
 void rotatePoint(double theta, double *xB, double *yB) {
@@ -627,9 +627,9 @@ void rotatePoint(double theta, double *xB, double *yB) {
 // 在平面直角坐标系种，有一点A，输入点A的X,Y坐标值，输入一个距离参数S，
 // 点A向原点方向移动S作为点B，返回点B的坐标值。我需要C语言的函数。
 void movePoint(double xA, double yA, double s, double *xB, double *yB) {
-  double distance = sqrt(pow(xA, 2) + pow(yA, 2));  
+  double distance = sqrt(pow(xA, 2) + pow(yA, 2));
   if(distance - s <= 1e-6) {
-    *xB = 0; 
+    *xB = 0;
     *yB = 0;
   }
   else {
@@ -739,9 +739,9 @@ void RoArmM2_singleJointAbsCtrl(byte jointInput, double inputRad, u16 inputSpd, 
 //
 //
 //    -------L3------------O==L2B==O  <- BASE_JOINT
-//                         ^       
-//   <---X+--Z+            |       
-//           |       ELBOW_JOINT   
+//                         ^
+//   <---X+--Z+            |
+//           |       ELBOW_JOINT
 //           Y+
 //           |
 //           v
@@ -765,7 +765,7 @@ void RoArmM2_allJointAbsCtrl(double inputBase, double inputShoulder, double inpu
 // ctrl the movement in a smooth way.
 // |                 ..  <-numEnd
 // |             .    |
-// |           .    
+// |           .
 // |         .        |
 // |        .
 // |      .           |
@@ -777,7 +777,7 @@ double besselCtrl(double numStart, double numEnd, double rateInput){
   numOut = (numEnd - numStart)*((cos(rateInput*M_PI+M_PI)+1)/2) + numStart;
   return numOut;
 }
-   
+
 
 // use this function to get the max deltaSteps.
 // get the max offset between [goal] and [last] position.
@@ -894,8 +894,8 @@ void RoArmM2_allPosAbsBesselCtrl(double inputX, double inputY, double inputZ, do
 // '''
 // 我需要一个函数，输入圆心坐标点、半径和比例，当比例从0到1变化时，函数输出的坐标点可以组成一个完整的圆。
 // '''
-// I need a function that inputs the center coordinate point, 
-// radius and scale(t), and when the scale(t) changes from 0 to 1, 
+// I need a function that inputs the center coordinate point,
+// radius and scale(t), and when the scale(t) changes from 0 to 1,
 // the coordinate points output by the function can form a complete circle.
 // '''
 //
@@ -1020,9 +1020,9 @@ void RoArmM2_singleJointAngleCtrl(byte jointInput, double inputAng, u16 inputSpd
 //
 //
 //    -------L3------------O==L2B==O  <- BASE_JOINT
-//                         ^       
-//   <---X+--Z+            |       
-//           |       ELBOW_JOINT   
+//                         ^
+//   <---X+--Z+            |
+//           |       ELBOW_JOINT
 //           Y+
 //           |
 //           v
@@ -1035,7 +1035,7 @@ void RoArmM2_allJointsAngleCtrl(double inputBase, double inputShoulder, double i
 
   ELBOW_JOINT_ANG = inputElbow;
   ELBOW_JOINT_RAD = ang2deg(inputElbow);
-  
+
   EOAT_JOINT_ANG = inputHand;
   EOAT_JOINT_RAD = ang2deg(inputHand);
 

@@ -46,7 +46,7 @@ bool wifiConfigFound = false;
 // update oled accroding to wifi settings.
 void updateOledWifiInfo() {
   switch(WIFI_CURRENT_MODE) {
-  case 0: 
+  case 0:
     screenLine_0 = "AP: OFF";
     screenLine_1 = "ST: OFF";
     break;
@@ -73,7 +73,7 @@ bool loadWifiConfig() {
 	wifiConfigYaml = LittleFS.open("/wifiConfig.json", "r");
 	if (wifiConfigYaml) {
 		if (InfoPrint == 1) {Serial.println("/wifiConfig.json load succeed.");}
-		
+
 		String line = wifiConfigYaml.readStringUntil('\n');
 
 		// parse the YAML file using ArduinoJson.
@@ -265,7 +265,7 @@ bool wifiModeAPSTA(const char* input_ap_ssid, const char* input_ap_password, con
 	}
 	ap_ssid = input_ap_ssid;
 	ap_password = input_ap_password;
-	
+
 	WiFi.begin(input_sta_ssid, input_sta_password);
 	connectionStartTime = millis();
 
@@ -309,7 +309,7 @@ bool wifiModeAPSTA(const char* input_ap_ssid, const char* input_ap_password, con
 	jsonInfoHttp["sta_password"] = sta_password;
 	jsonInfoHttp["ap_ssid"] = ap_ssid;
 	jsonInfoHttp["ap_password"] = ap_password;
-	
+
 	return true;
 }
 
@@ -327,7 +327,7 @@ void wifiStop() {
 bool wifiModeOnBoot() {
 	bool funcStatus = false;
 	switch(WIFI_MODE_ON_BOOT) {
-	case 0: 
+	case 0:
 		if (InfoPrint == 1) {
 			Serial.println("wifi mode on boot: OFF");
 		}

@@ -48,7 +48,7 @@
 #define AK09918_RSV1        0x02    // Reserved 1
 #define AK09918_RSV2        0x03    // Reserved 2
 #define AK09918_ST1         0x10    // DataStatus 1
-#define AK09918_HXL         0x11    // X-axis data 
+#define AK09918_HXL         0x11    // X-axis data
 #define AK09918_HXH         0x12
 #define AK09918_HYL         0x13    // Y-axis data
 #define AK09918_HYH         0x14
@@ -93,7 +93,6 @@ enum AK09918_err_type_t {
     AK09918_ERR_OVERFLOW = 5,           // sensor overflow, means |x|+|y|+|z| >= 4912uT
     AK09918_ERR_WRITE_FAILED = 6,       // fail to write
     AK09918_ERR_READ_FAILED = 7,        // fail to read
-
 };
 
 typedef struct imu_st_sensor_data_tag

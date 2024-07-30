@@ -25,7 +25,7 @@ double declination_shenzhen = -3.22;
 #define Ki 1.0f    // integral gain governs rate of convergence of gyroscope biases
 
 float angles[3];
-float q0, q1, q2, q3; 
+float q0, q1, q2, q3;
 
 void imuInit()
 { 
@@ -84,7 +84,7 @@ void imuDataGet(EulerAngles *pstAngles,
   MotionVal[8]=pstMagnRawData->s16Z;
 
   imuAHRSupdate((float)MotionVal[0] * 0.0175, (float)MotionVal[1] * 0.0175, (float)MotionVal[2] * 0.0175,
-                (float)MotionVal[3], (float)MotionVal[4], (float)MotionVal[5], 
+                (float)MotionVal[3], (float)MotionVal[4], (float)MotionVal[5],
                 (float)MotionVal[6], (float)MotionVal[7], MotionVal[8]);
 
   pstAngles->pitch = asin(-2 * q1 * q3 + 2 * q0* q2)* 57.3; // pitch
@@ -99,7 +99,7 @@ void imuDataGet(EulerAngles *pstAngles,
   pstAccelRawData->Y = acc[1];
   pstAccelRawData->Z = acc[2];
 
-  return;  
+  return;
 }
 
 void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz) 
@@ -117,16 +117,16 @@ void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, f
   float q1q1 = q1 * q1;
   float q1q2 = q1 * q2;
   float q1q3 = q1 * q3;
-  float q2q2 = q2 * q2;   
+  float q2q2 = q2 * q2;
   float q2q3 = q2 * q3;
-  float q3q3 = q3 * q3;          
+  float q3q3 = q3 * q3;
 
-  norm = invSqrt(ax * ax + ay * ay + az * az);       
+  norm = invSqrt(ax * ax + ay * ay + az * az);
   ax = ax * norm;
   ay = ay * norm;
   az = az * norm;
 
-  norm = invSqrt(mx * mx + my * my + mz * mz);          
+  norm = invSqrt(mx * mx + my * my + mz * mz);
   mx = mx * norm;
   my = my * norm;
   mz = mz * norm;
@@ -134,9 +134,9 @@ void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, f
   // compute reference direction of flux
   hx = 2 * mx * (0.5f - q2q2 - q3q3) + 2 * my * (q1q2 - q0q3) + 2 * mz * (q1q3 + q0q2);
   hy = 2 * mx * (q1q2 + q0q3) + 2 * my * (0.5f - q1q1 - q3q3) + 2 * mz * (q2q3 - q0q1);
-  hz = 2 * mx * (q1q3 - q0q2) + 2 * my * (q2q3 + q0q1) + 2 * mz * (0.5f - q1q1 - q2q2);         
+  hz = 2 * mx * (q1q3 - q0q2) + 2 * my * (q2q3 + q0q1) + 2 * mz * (0.5f - q1q1 - q2q2);
   bx = sqrt((hx * hx) + (hy * hy));
-  bz = hz;     
+  bz = hz;
 
   // estimated direction of gravity and flux (v and w)
   vx = 2 * (q1q3 - q0q2);
@@ -144,7 +144,7 @@ void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, f
   vz = q0q0 - q1q1 - q2q2 + q3q3;
   wx = 2 * bx * (0.5 - q2q2 - q3q3) + 2 * bz * (q1q3 - q0q2);
   wy = 2 * bx * (q1q2 - q0q3) + 2 * bz * (q0q1 + q2q3);
-  wz = 2 * bx * (q0q2 + q1q3) + 2 * bz * (0.5 - q1q1 - q2q2);  
+  wz = 2 * bx * (q0q2 + q1q3) + 2 * bz * (0.5 - q1q1 - q2q2);
 
   // error is sum of cross product between reference direction of fields and direction measured by sensors
   ex = (ay * vz - az * vy) + (my * wz - mz * wy);
@@ -154,7 +154,7 @@ void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, f
   if(ex != 0.0f && ey != 0.0f && ez != 0.0f)
   {
     exInt = exInt + ex * Ki * halfT;
-    eyInt = eyInt + ey * Ki * halfT;  
+    eyInt = eyInt + ey * Ki * halfT;
     ezInt = ezInt + ez * Ki * halfT;
 
     gx = gx + Kp * ex + exInt;
@@ -165,7 +165,7 @@ void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, f
   q0 = q0 + (-q1 * gx - q2 * gy - q3 * gz) * halfT;
   q1 = q1 + (q0 * gx + q2 * gz - q3 * gy) * halfT;
   q2 = q2 + (q0 * gy - q1 * gz + q3 * gx) * halfT;
-  q3 = q3 + (q0 * gz + q1 * gy - q2 * gx) * halfT;  
+  q3 = q3 + (q0 * gz + q1 * gy - q2 * gx) * halfT;
 
   norm = invSqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
   q0 = q0 * norm;
@@ -174,16 +174,16 @@ void imuAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, f
   q3 = q3 * norm;
 }
 
-float invSqrt(float x) 
+float invSqrt(float x)
 {
   float halfx = 0.5f * x;
   float y = x;
-  
+
   long i = *(long*)&y;                //get bits for floating value
   i = 0x5f3759df - (i >> 1);          //gives initial guss you
   y = *(float*)&i;                    //convert bits back to float
   y = y * (1.5f - (halfx * y * y));   //newtop step, repeating increases accuracy
-  
+
   return y;
 }
 
@@ -197,7 +197,7 @@ void calibrateMagn(void)
   temp[0] = x;
   temp[1] = y;
   temp[2] = z;
-  
+
   Serial.printf("rotate z axis 180 degrees and it will read all axises offset value after 4 seconds\n");
   delay(4000);
   Serial.printf("start read all axises offset value\n");

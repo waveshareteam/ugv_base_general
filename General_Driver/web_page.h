@@ -33,7 +33,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
-        user-select: none; 
+        user-select: none;
     }
     .cc-middle{
         width: 100px;
@@ -49,7 +49,7 @@ const char index_html[] PROGMEM = R"rawliteral(
     }
     .controlor-c > div{
         width: 300px;
-        height: 300px; 
+        height: 300px;
         background-color: rgba(94,98,112,0.2);
         border-radius: 40px;
         box-shadow: 10px 10px 10px rgba(0,0,0,0.05);

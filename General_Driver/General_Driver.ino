@@ -152,7 +152,7 @@ void setup() {
   oled_update();
   if(InfoPrint == 1){Serial.println("Power up the servos.");}
   delay(500);
-  
+
   // init servo ctrl functions.
   screenLine_2 = screenLine_3;
   screenLine_3 = "ServoCtrl init UART2TTL...";
@@ -238,7 +238,7 @@ void loop() {
   case 2: moduleType_Gimbal();break;
   }
 
-  // recv esp-now json cmd.
+  // receive esp-now json cmd.
   if(runNewJsonCmd) {
     jsonCmdReceiveHandler();
     jsonCmdReceive.clear();
@@ -248,11 +248,11 @@ void loop() {
   getLeftSpeed();
 
   LeftPidControllerCompute();
-  
+
   getRightSpeed();
-  
+
   RightPidControllerCompute();
-  
+
   oledInfoUpdate();
 
   updateIMUData();
