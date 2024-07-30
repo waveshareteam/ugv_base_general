@@ -43,7 +43,7 @@ DynamicJsonDocument wifiDoc(256);
 bool wifiConfigFound = false;
 
 
-// update oled accroding to wifi settings.
+// update OLED according to wifi settings.
 void updateOledWifiInfo() {
   switch(WIFI_CURRENT_MODE) {
   case 0:
@@ -102,7 +102,7 @@ bool loadWifiConfig() {
 		return true;
 
 	} else {
-		if (InfoPrint == 1) {Serial.println("cound not found wifiConfig.json.");}
+		if (InfoPrint == 1) {Serial.println("could not found wifiConfig.json.");}
 		wifiConfigFound = false;
 		return false;
 	}

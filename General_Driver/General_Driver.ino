@@ -24,7 +24,7 @@ StaticJsonDocument<512> jsonInfoHttp;
 #include <Adafruit_Sensor.h>
 
 
-// functions for barrery info.
+// functions for battery info.
 #include "battery_ctrl.h"
 
 // functions for oled.

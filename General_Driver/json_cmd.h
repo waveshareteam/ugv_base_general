@@ -109,7 +109,7 @@
 // {"T":142,"cmd":0}
 #define CMD_FEEDBACK_FLOW_INTERVAL	142	// dev
 
-// set the echo mode of recving new cmd.
+// set the echo mode of receiving new cmd.
 // 0: [default]off
 // 1: on
 // {"T":143,"cmd":0}
@@ -425,9 +425,9 @@
 // === === === ESP-NOW settings. === === ===
 
 // note: wifi must be running under STA(AP+STA) mode.
-// it will be controled by broadcast mac address.
+// it will be controlled by broadcast mac address.
 // {"T":300,"mode":1} [default]
-// it won't be controled by broadcast mac address, and add one mac to whitelist.
+// it won't be controlled by broadcast mac address, and add one mac to whitelist.
 // if there is no leader you can just fill 00:00:00:00:00:00 in it.
 // {"T":300,"mode":0,"mac":"CC:DB:A7:5B:E4:1C"}
 #define CMD_BROADCAST_FOLLOWER 300

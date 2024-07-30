@@ -37,7 +37,7 @@ void init_oled(){
 }
 
 
-// Updata all data and flash the screen.
+// Update all data and flash the screen.
 void oled_update() {
   display.clearDisplay();
   display.setCursor(0,0);

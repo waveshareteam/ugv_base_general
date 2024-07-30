@@ -338,7 +338,7 @@ const char index_html[] PROGMEM = R"rawliteral(
                         <div>
                             <div id="device-gimbal-btn_B">
                                 <label><button name="speedbtn" class="small-btn" onmousedown="gimbalCtrl(3);" ontouchstart="gimbalCtrl(3);" onmouseup="gimbalCtrl(0);" ontouchend="gimbalCtrl(0);">LEFT</button></label>
-                                <label><button name="speedbtn" class="small-btn" onmousedown="gimbalCtrl(5);" ontouchstart="gimbalCtrl(5);" onmouseup="gimbalCtrl(0);" ontouchend="gimbalCtrl(0);">FOEWARD</button></label>
+                                <label><button name="speedbtn" class="small-btn" onmousedown="gimbalCtrl(5);" ontouchstart="gimbalCtrl(5);" onmouseup="gimbalCtrl(0);" ontouchend="gimbalCtrl(0);">FORWARD</button></label>
                                 <label><button name="speedbtn" class="small-btn" onmousedown="gimbalCtrl(4);" ontouchstart="gimbalCtrl(4);" onmouseup="gimbalCtrl(0);" ontouchend="gimbalCtrl(0);">RIGHT</button></label>
                             </div>
                         </div>
@@ -378,12 +378,12 @@ const char index_html[] PROGMEM = R"rawliteral(
         </section>
         <section>
             <div class="fb-info">
-                <h2 class="h2-tt" id="deviceInfo">Feedback infomation</h2>
-                <span id="fbInfo" word-wrap="break-all">Json feedback infomation shows here.</span>
+                <h2 class="h2-tt" id="deviceInfo">Feedback information</h2>
+                <span id="fbInfo" word-wrap="break-all">JSON feedback information shows here.</span>
             </div>
             <div class="fb-input-info">
                 <div class="feedb-p">
-                    <input type="text" id="jsonData" placeholder="Input json cmd here.">
+                    <input type="text" id="jsonData" placeholder="Input JSON command here">
                     <label><button class="small-btn btn-send" onclick="jsonSend();">SEND</button></label>
                 </div>
                 <div class="info-box json-cmd-info">

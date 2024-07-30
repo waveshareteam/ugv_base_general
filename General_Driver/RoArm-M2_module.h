@@ -137,7 +137,7 @@ void servoTorqueCtrl(byte servoID, u8 enableCMD){
 
 
 // set the current position as the middle position of the servo.
-// input the ID of the servo that you wannna set middle position. 
+// input the ID of the servo that you want to set middle position.
 void setMiddlePos(byte InputID){
   st.CalibrationOfs(InputID);
 }
@@ -165,7 +165,7 @@ void waitMove2Goal(byte InputID, s16 goalPosition, s16 offSet){
 }
 
 
-// initialize bus servo libraris and uart2ttl.
+// initialize bus servo libraries and uart2ttl.
 void RoArmM2_servoInit(){
   Serial1.begin(1000000, SERIAL_8N1, S_RXD, S_TXD);
   st.pSerial = &Serial1;
@@ -276,7 +276,7 @@ int RoArmM2_baseJointCtrlRad(byte returnType, double radInput, u16 speedInput, u
 }
 
 
-// use this function to compute the servo position to ctrl shoudlder joint.
+// use this function to compute the servo position to ctrl shoulder joint.
 // returnType 0: only returns the shoulder joint servo position and save it to goalPos[1] and goalPos[2],
 //               servo will NOT move.
 //            1: returns the shoulder joint servo position and save it to goalPos[1] and goalPos[2],
@@ -506,7 +506,7 @@ void cartesian_to_polar(double x, double y, double* r, double* theta) {
 // 你在回答的过程中可以告诉我你还有什么其它需要的信息。
 // '''
 // use this two functions to compute the position of coordinate point
-// by inputing the jointRad.
+// by inputting the jointRad.
 // 这个函数用于将极坐标转换为直角坐标
 void polarToCartesian(double r, double theta, double &x, double &y) {
   x = r * cos(theta);

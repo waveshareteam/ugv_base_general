@@ -17,8 +17,8 @@ byte espNowMode = 3;
 
 // set the broadcast ctrl mode.
 // broadcast mac address: FF:FF:FF:FF:FF:FF.
-// true  - [default]it can be controled by broadcast mac address.
-// false - it won't be controled by broadcast mac address.
+// true  - [default]it can be controlled by broadcast mac address.
+// false - it won't be controlled by broadcast mac address.
 bool ctrlByBroadcast = true;
 
 // you can define some whitelist mac addresses here.
