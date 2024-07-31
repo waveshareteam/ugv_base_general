@@ -88,7 +88,7 @@
 
 // the robot need to be put on a ground and kept still
 // getting the imu offset and set as default
-// this gonna take a while (5s)
+// this is going to take a while (5s)
 // {"T":127}
 #define CMD_CALI_IMU_STEP	127
 
@@ -109,7 +109,7 @@
 // {"T":142,"cmd":0}
 #define CMD_FEEDBACK_FLOW_INTERVAL	142	// dev
 
-// set the echo mode of recving new cmd.
+// set the echo mode of receiving new cmd.
 // 0: [default]off
 // 1: on
 // {"T":143,"cmd":0}
@@ -245,7 +245,7 @@
 
 // dynamic external force adaptation.
 // mode: 0 - stop: reset every limit torque to 1000.
-//       1 - start: set the joint limit torque. 
+//       1 - start: set the joint limit torque.
 // b, s, e, h = bassJoint, shoulderJoint, elbowJoint, handJoint
 // example:
 // starts. input the limit torque of every joint.
@@ -348,7 +348,7 @@
 
 // === === === mission & steps edit. === === ===
 
-// create a mission in flash: 
+// create a mission in flash:
 // {"T":220,"name":"mission_a","intro":"test mission created in flash."}
 #define CMD_CREATE_MISSION 220
 
@@ -425,9 +425,9 @@
 // === === === ESP-NOW settings. === === ===
 
 // note: wifi must be running under STA(AP+STA) mode.
-// it will be controled by broadcast mac address.
+// it will be controlled by broadcast mac address.
 // {"T":300,"mode":1} [default]
-// it won't be controled by broadcast mac address, and add one mac to whitelist.
+// it won't be controlled by broadcast mac address, and add one mac to whitelist.
 // if there is no leader you can just fill 00:00:00:00:00:00 in it.
 // {"T":300,"mode":0,"mac":"CC:DB:A7:5B:E4:1C"}
 #define CMD_BROADCAST_FOLLOWER 300
@@ -524,11 +524,11 @@
 #define CMD_SET_SERVO_ID 501
 
 // set the current position as the middle position.
-// > BASE_SERVO_ID    11
-// > SHOULDER_DRIVING_SERVO_ID 12
-// > SHOULDER_DRIVEN_SERVO_ID  13
-// > ELBOW_SERVO_ID   14
-// > GRIPPER_SERVO_ID 15
+// > BASE_SERVO_ID              11
+// > SHOULDER_DRIVING_SERVO_ID  12
+// > SHOULDER_DRIVEN_SERVO_ID   13
+// > ELBOW_SERVO_ID             14
+// > GRIPPER_SERVO_ID           15
 // {"T":502,"id":11}
 #define CMD_SET_MIDDLE   502
 

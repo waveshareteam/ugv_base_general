@@ -137,7 +137,7 @@ void servoTorqueCtrl(byte servoID, u8 enableCMD){
 
 
 // set the current position as the middle position of the servo.
-// input the ID of the servo that you wannna set middle position. 
+// input the ID of the servo that you want to set middle position.
 void setMiddlePos(byte InputID){
   st.CalibrationOfs(InputID);
 }
@@ -146,14 +146,14 @@ void setMiddlePos(byte InputID){
 // to release all servos' torque for 10s.
 void emergencyStopProcessing() {
   st.EnableTorque(254, 0);
-  
+
 }
 
 
 // position check.
 // it will wait for the servo to move to the goal position.
 void waitMove2Goal(byte InputID, s16 goalPosition, s16 offSet){
-  while(servoFeedback[InputID - 11].pos < goalPosition - offSet || 
+  while(servoFeedback[InputID - 11].pos < goalPosition - offSet ||
         servoFeedback[InputID - 11].pos > goalPosition + offSet){
     if (!servoFeedback[InputID - 11].status) {
       servoTorqueCtrl(254, 0);
@@ -165,7 +165,7 @@ void waitMove2Goal(byte InputID, s16 goalPosition, s16 offSet){
 }
 
 
-// initialize bus servo libraris and uart2ttl.
+// initialize bus servo libraries and uart2ttl.
 void RoArmM2_servoInit(){
   Serial1.begin(1000000, SERIAL_8N1, S_RXD, S_TXD);
   st.pSerial = &Serial1;
@@ -199,7 +199,7 @@ void RoArmM2_initCheck(bool returnType) {
 bool setServosPID(byte InputID, byte InputP) {
   if(!getFeedback(InputID, true)){return false;}
   st.unLockEprom(InputID);
-  st.writeByte(InputID, ST_PID_P_ADDR, InputP); 
+  st.writeByte(InputID, ST_PID_P_ADDR, InputP);
   st.LockEprom(InputID);
   return true;
 }
@@ -226,7 +226,7 @@ void RoArmM2_moveInit() {
   if(InfoPrint == 1){Serial.println("Moving SHOULDER_JOINT to initPos.");}
   st.WritePosEx(SHOULDER_DRIVING_SERVO_ID, ARM_SERVO_MIDDLE_POS, ARM_SERVO_INIT_SPEED, ARM_SERVO_INIT_ACC);
 
-  // check SHOULDER_DRIVEING_SERVO position.
+  // check SHOULDER_DRIVING_SERVO_ID position.
   if(InfoPrint == 1){Serial.println("...");}
   waitMove2Goal(SHOULDER_DRIVING_SERVO_ID, ARM_SERVO_MIDDLE_POS, 30);
 
@@ -276,7 +276,7 @@ int RoArmM2_baseJointCtrlRad(byte returnType, double radInput, u16 speedInput, u
 }
 
 
-// use this function to compute the servo position to ctrl shoudlder joint.
+// use this function to compute the servo position to ctrl shoulder joint.
 // returnType 0: only returns the shoulder joint servo position and save it to goalPos[1] and goalPos[2],
 //               servo will NOT move.
 //            1: returns the shoulder joint servo position and save it to goalPos[1] and goalPos[2],
@@ -289,7 +289,7 @@ int RoArmM2_shoulderJointCtrlRad(byte returnType, double radInput, u16 speedInpu
   s16 computePos = calculatePosByRad(radInput);
   goalPos[1] = ARM_SERVO_MIDDLE_POS + computePos;
   goalPos[2] = ARM_SERVO_MIDDLE_POS - computePos;
-  
+
   if(returnType == 1){
     st.WritePosEx(SHOULDER_DRIVING_SERVO_ID, goalPos[1], speedInput, accInput);
     st.WritePosEx(SHOULDER_DRIVEN_SERVO_ID, goalPos[2], speedInput, accInput);
@@ -327,7 +327,7 @@ int RoArmM2_elbowJointCtrlRad(byte returnType, double radInput, u16 speedInput, 
 //               servo will NOT move.
 //            1: returns the hand joint servo position and save it to goalPos[4],
 //               servo moves.
-// ctrl type 0: status ctrl. - cmd 0: release 
+// ctrl type 0: status ctrl. - cmd 0: release
 //                                 1: grab
 //           1: position ctrl. - cmd: input angle in radius.
 int RoArmM2_handJointCtrlRad(byte returnType, double radInput, u16 speedInput, u8 accInput) {
@@ -379,7 +379,7 @@ void RoArmM2_handTorqueCtrl(int inputTorque) {
 
 // dynamic external force adaptation.
 // mode: 0 - stop: reset every limit torque to 1000.
-//       1 - start: set the joint limit torque. 
+//       1 - start: set the joint limit torque.
 // b, s, e, h = bassJoint, shoulderJoint, elbowJoint, handJoint
 // example:
 // starts. input the limit torque of every joint.
@@ -402,12 +402,12 @@ void RoArmM2_dynamicAdaptation(byte inputM, int inputB, int inputS, int inputE, 
 
 
 // this function uses relative radInput to set a new X+ axis.
-// dirInput: 
+// dirInput:
 //              0
 //              X+
 //        -90 - ^ - 90
 //              |
-//          -180 180 
+//          -180 180
 void setNewAxisX(double angleInput) {
   double radInput = (angleInput / 180) * M_PI;
   RoArmM2_shoulderJointCtrlRad(1, 0, 500, 20);
@@ -485,12 +485,12 @@ void simpleLinkageIkRad(double LA, double LB, double aIn, double bIn) {
 // '''
 
 // AI prompt:
-// I need a C language function. In a 2D Cartesian coordinate system, 
+// I need a C language function. In a 2D Cartesian coordinate system,
 // input a coordinate point (x, y). The function should return two values:
 
 // The distance from this coordinate point to the origin of the coordinate system.
-// The angle, in radians, between the line connecting this point and the origin 
-// of the coordinate system and the positive direction of the x-axis. 
+// The angle, in radians, between the line connecting this point and the origin
+// of the coordinate system and the positive direction of the x-axis.
 // The angle should be in the range (-π, π).
 void cartesian_to_polar(double x, double y, double* r, double* theta) {
     *r = sqrt(x * x + y * y);
@@ -506,7 +506,7 @@ void cartesian_to_polar(double x, double y, double* r, double* theta) {
 // 你在回答的过程中可以告诉我你还有什么其它需要的信息。
 // '''
 // use this two functions to compute the position of coordinate point
-// by inputing the jointRad.
+// by inputting the jointRad.
 // 这个函数用于将极坐标转换为直角坐标
 void polarToCartesian(double r, double theta, double &x, double &y) {
   x = r * cos(theta);
@@ -516,7 +516,7 @@ void polarToCartesian(double r, double theta, double &x, double &y) {
 
 // this function is used to compute the position of the end point.
 // input the angle of every joint in radius.
-// compute the positon and save it to lastXYZ by default.
+// compute the position and save it to lastXYZ by default.
 void RoArmM2_computePosbyJointRad(double base_joint_rad, double shoulder_joint_rad, double elbow_joint_rad, double hand_joint_rad) {
   if (EEMode == 0) {
     // the end of the arm.
@@ -530,7 +530,7 @@ void RoArmM2_computePosbyJointRad(double base_joint_rad, double shoulder_joint_r
 
     r_ee = aOut + cOut;
     z_ee = bOut + dOut;
-    
+
     polarToCartesian(r_ee, base_joint_rad, eOut, fOut);
     x_ee = eOut;
     y_ee = fOut;
@@ -612,7 +612,7 @@ void RoArmM2_infoFeedback() {
 // AI prompt:
 // In a 2D Cartesian coordinate system, there is a point A.
 // Input the X and Y coordinates of point A and an angle parameter theta (in radians).
-// Point A rotates counterclockwise around the origin of the Cartesian coordinate 
+// Point A rotates counterclockwise around the origin of the Cartesian coordinate
 // system by an angle of theta to become point B. Return the XY coordinates of point B.
 // I need a C language function.
 void rotatePoint(double theta, double *xB, double *yB) {
@@ -627,9 +627,9 @@ void rotatePoint(double theta, double *xB, double *yB) {
 // 在平面直角坐标系种，有一点A，输入点A的X,Y坐标值，输入一个距离参数S，
 // 点A向原点方向移动S作为点B，返回点B的坐标值。我需要C语言的函数。
 void movePoint(double xA, double yA, double s, double *xB, double *yB) {
-  double distance = sqrt(pow(xA, 2) + pow(yA, 2));  
+  double distance = sqrt(pow(xA, 2) + pow(yA, 2));
   if(distance - s <= 1e-6) {
-    *xB = 0; 
+    *xB = 0;
     *yB = 0;
   }
   else {
@@ -640,10 +640,10 @@ void movePoint(double xA, double yA, double s, double *xB, double *yB) {
 }
 
 
-// ---===< Muti-assembly IK config here >===---
+// ---===< Multi-assembly IK config here >===---
 // change this func and goalPosMove()
 // Coordinate Ctrl: input the coordinate point of the goal position to compute
-// the goalPos of every joints.
+// the goalPos of every joint.
 void RoArmM2_baseCoordinateCtrl(double inputX, double inputY, double inputZ, double inputT){
   if (EEMode == 0) {
     cartesian_to_polar(inputX, inputY, &base_r, &BASE_JOINT_RAD);
@@ -671,7 +671,7 @@ void RoArmM2_lastPosUpdate(){
 
 // use jointCtrlRad functions to compute goalPos for every servo,
 // then use this function to move the servos.
-// cuz the functions like baseCoordinateCtrl is not gonna make servos move.
+// because the functions like baseCoordinateCtrl is not going to make servos move.
 void RoArmM2_goalPosMove(){
   RoArmM2_baseJointCtrlRad(0, BASE_JOINT_RAD, 0, 0);
   RoArmM2_shoulderJointCtrlRad(0, SHOULDER_JOINT_RAD, 0, 0);
@@ -739,9 +739,9 @@ void RoArmM2_singleJointAbsCtrl(byte jointInput, double inputRad, u16 inputSpd, 
 //
 //
 //    -------L3------------O==L2B==O  <- BASE_JOINT
-//                         ^       
-//   <---X+--Z+            |       
-//           |       ELBOW_JOINT   
+//                         ^
+//   <---X+--Z+            |
+//           |       ELBOW_JOINT
 //           Y+
 //           |
 //           v
@@ -765,7 +765,7 @@ void RoArmM2_allJointAbsCtrl(double inputBase, double inputShoulder, double inpu
 // ctrl the movement in a smooth way.
 // |                 ..  <-numEnd
 // |             .    |
-// |           .    
+// |           .
 // |         .        |
 // |        .
 // |      .           |
@@ -777,7 +777,7 @@ double besselCtrl(double numStart, double numEnd, double rateInput){
   numOut = (numEnd - numStart)*((cos(rateInput*M_PI+M_PI)+1)/2) + numStart;
   return numOut;
 }
-   
+
 
 // use this function to get the max deltaSteps.
 // get the max offset between [goal] and [last] position.
@@ -894,8 +894,8 @@ void RoArmM2_allPosAbsBesselCtrl(double inputX, double inputY, double inputZ, do
 // '''
 // 我需要一个函数，输入圆心坐标点、半径和比例，当比例从0到1变化时，函数输出的坐标点可以组成一个完整的圆。
 // '''
-// I need a function that inputs the center coordinate point, 
-// radius and scale(t), and when the scale(t) changes from 0 to 1, 
+// I need a function that inputs the center coordinate point,
+// radius and scale(t), and when the scale(t) changes from 0 to 1,
 // the coordinate points output by the function can form a complete circle.
 // '''
 //
@@ -1020,9 +1020,9 @@ void RoArmM2_singleJointAngleCtrl(byte jointInput, double inputAng, u16 inputSpd
 //
 //
 //    -------L3------------O==L2B==O  <- BASE_JOINT
-//                         ^       
-//   <---X+--Z+            |       
-//           |       ELBOW_JOINT   
+//                         ^
+//   <---X+--Z+            |
+//           |       ELBOW_JOINT
 //           Y+
 //           |
 //           v
@@ -1035,7 +1035,7 @@ void RoArmM2_allJointsAngleCtrl(double inputBase, double inputShoulder, double i
 
   ELBOW_JOINT_ANG = inputElbow;
   ELBOW_JOINT_RAD = ang2deg(inputElbow);
-  
+
   EOAT_JOINT_ANG = inputHand;
   EOAT_JOINT_RAD = ang2deg(inputHand);
 

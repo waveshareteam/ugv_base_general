@@ -48,7 +48,7 @@
 #define AK09918_RSV1        0x02    // Reserved 1
 #define AK09918_RSV2        0x03    // Reserved 2
 #define AK09918_ST1         0x10    // DataStatus 1
-#define AK09918_HXL         0x11    // X-axis data 
+#define AK09918_HXL         0x11    // X-axis data
 #define AK09918_HXH         0x12
 #define AK09918_HYL         0x13    // Y-axis data
 #define AK09918_HYH         0x14
@@ -66,7 +66,7 @@
 #define AK09918_DRDY_BIT    0x01    // Data Ready
 
 // #define AK09918_MEASURE_PERIOD 9    // Must not be changed
-// AK09918 has following seven operation modes:
+// AK09918 has the following seven operation modes:
 // (1) Power-down mode: AK09918 doesn't measure
 // (2) Single measurement mode: measure when you call any getData() function
 // (3) Continuous measurement mode 1: 10Hz, measure 10 times per second,
@@ -93,7 +93,6 @@ enum AK09918_err_type_t {
     AK09918_ERR_OVERFLOW = 5,           // sensor overflow, means |x|+|y|+|z| >= 4912uT
     AK09918_ERR_WRITE_FAILED = 6,       // fail to write
     AK09918_ERR_READ_FAILED = 7,        // fail to read
-
 };
 
 typedef struct imu_st_sensor_data_tag

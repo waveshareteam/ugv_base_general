@@ -54,8 +54,8 @@ void switchPortCtrlA(float pwmInputA){
     digitalWrite(AIN2, LOW);
     ledcWrite(channel_A,-pwmIntA);
   }
-}
 
+}
 
 void switchPortCtrlB(float pwmInputB){
   int pwmIntB = round(pwmInputB * spd_rate_B);
@@ -301,7 +301,7 @@ void setGoalSpeed(float inputLeft, float inputRight) {
     if(inputRight < -2.0 || inputRight > 2.0){
       return;
     }
-    
+
     setpointA = inputLeft*spd_rate_A;
     setpointB = inputRight*spd_rate_B;
 
@@ -309,7 +309,7 @@ void setGoalSpeed(float inputLeft, float inputRight) {
       pidA.Setpoint(setpointA);
       setpointA_buffer = inputLeft;
     }
-    
+
     if (setpointB != setpointB_buffer) {
       pidB.Setpoint(setpointB);
       setpointB_buffer = inputRight;
@@ -437,7 +437,7 @@ void mm_settings(byte inputMain, byte inputModule) {
     screenLine_2 = "UGV02";
   } else if (mainType == 3) {
     screenLine_2 = "UGV01";
-  } 
+  }
 
   if (moduleType == 0) {
     screenLine_2 += " Null";
@@ -445,5 +445,5 @@ void mm_settings(byte inputMain, byte inputModule) {
     screenLine_2 += " Arm";
   } else if (moduleType == 2) {
     screenLine_2 += " PT";
-  } 
+  }
 }

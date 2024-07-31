@@ -298,7 +298,7 @@ void jsonCmdReceiveHandler(){
 												missionContent(
 												jsonCmdReceive["name"]
 												);break;
-	case CMD_APPEND_STEP_JSON: 
+	case CMD_APPEND_STEP_JSON:
 												appendStepJson(
 												jsonCmdReceive["name"],
 												jsonCmdReceive["step"]
@@ -377,7 +377,7 @@ void jsonCmdReceiveHandler(){
   											changeEspNowMode(
   											jsonCmdReceive["mode"]
   											);break;
-  case CMD_GET_MAC_ADDRESS: 
+  case CMD_GET_MAC_ADDRESS:
   											getThisDevMacAddress();
   											break;
   case CMD_ESP_NOW_ADD_FOLLOWER:
@@ -411,7 +411,7 @@ void jsonCmdReceiveHandler(){
 
 
 	// wifi settings.
-	case CMD_WIFI_ON_BOOT: 
+	case CMD_WIFI_ON_BOOT:
 												configWifiModeOnBoot(
 												jsonCmdReceive["cmd"]
 												);break;
@@ -430,9 +430,9 @@ void jsonCmdReceiveHandler(){
 											 	jsonCmdReceive["sta_password"]
 											 	);break;
 	case CMD_WIFI_INFO: 	wifiStatusFeedback();break;
-	case CMD_WIFI_CONFIG_CREATE_BY_STATUS: 
+	case CMD_WIFI_CONFIG_CREATE_BY_STATUS:
 												createWifiConfigFileByStatus();break;
-	case CMD_WIFI_CONFIG_CREATE_BY_INPUT: 
+	case CMD_WIFI_CONFIG_CREATE_BY_INPUT:
 												createWifiConfigFileByInput(
 												jsonCmdReceive["mode"],
 												jsonCmdReceive["ap_ssid"],

@@ -17,8 +17,8 @@ byte espNowMode = 3;
 
 // set the broadcast ctrl mode.
 // broadcast mac address: FF:FF:FF:FF:FF:FF.
-// true  - [default]it can be controled by broadcast mac address.
-// false - it won't be controled by broadcast mac address.
+// true  - [default]it can be controlled by broadcast mac address.
+// false - it won't be controlled by broadcast mac address.
 bool ctrlByBroadcast = true;
 
 // you can define some whitelist mac addresses here.
@@ -84,7 +84,7 @@ String thisMacStr;
 
 #define ARM_L1_LENGTH_MM    126.06
 #define ARM_L2_LENGTH_MM_A  236.82
-#define ARM_L2_LENGTH_MM_B	30.00 
+#define ARM_L2_LENGTH_MM_B	30.00
 #define ARM_L3_LENGTH_MM_A_0	280.15
 #define ARM_L3_LENGTH_MM_B_0	1.73
 
@@ -218,7 +218,7 @@ bool nanIK;
 bool RoArmM2_initCheckSucceed  = false;
 // bool RoArmM2_initCheckSucceed   = true;
 
-// // // args for syncWritePos.
+// args for syncWritePos.
 u8  servoID[5] = {11, 12, 13, 14, 15};
 s16 goalPos[5] = {2047, 2047, 2047, 2047, 2047};
 u16 moveSpd[5] = {0, 0, 0, 0, 0};

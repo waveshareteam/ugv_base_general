@@ -188,7 +188,7 @@ void initEspNow() {
   // register esp-now sending call back function.
   esp_now_register_send_cb(OnDataSent);
 
-  // register esp-now receving call back function.
+  // register esp-now receiving call back function.
   esp_now_register_recv_cb(OnDataRecv);
 
   // register peer
