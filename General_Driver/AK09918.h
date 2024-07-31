@@ -66,7 +66,7 @@
 #define AK09918_DRDY_BIT    0x01    // Data Ready
 
 // #define AK09918_MEASURE_PERIOD 9    // Must not be changed
-// AK09918 has following seven operation modes:
+// AK09918 has the following seven operation modes:
 // (1) Power-down mode: AK09918 doesn't measure
 // (2) Single measurement mode: measure when you call any getData() function
 // (3) Continuous measurement mode 1: 10Hz, measure 10 times per second,

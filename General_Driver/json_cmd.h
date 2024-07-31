@@ -88,7 +88,7 @@
 
 // the robot need to be put on a ground and kept still
 // getting the imu offset and set as default
-// this gonna take a while (5s)
+// this is going to take a while (5s)
 // {"T":127}
 #define CMD_CALI_IMU_STEP	127
 
