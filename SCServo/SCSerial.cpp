@@ -72,4 +72,6 @@ void SCSerial::rFlushSCS()
 
 void SCSerial::wFlushSCS()
 {
+    pSerial->flush();  // block until TX FIFO fully drains
+    rFlushSCS();       // discard the echoed TX bytes from RX buffer
 }
